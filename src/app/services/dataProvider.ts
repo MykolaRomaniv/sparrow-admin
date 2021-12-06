@@ -1,0 +1,50 @@
+import firebase from "firebase/app"
+import firebaseDataProvider from "ra-data-firebase-client"
+import firebaseConfig from "services/firebaseConfig"
+import { convertFileToBase64 } from "utils"
+
+const defaultFirebase = !firebase.apps.length
+  ? firebase.initializeApp(firebaseConfig)
+  : firebase.app()
+
+defaultFirebase.analytics()
+
+const settings = { context: "", imagekey: "images", filekey: "files" }
+
+const dataProvider = firebaseDataProvider(firebase, settings)
+
+const customDataProvider = {
+  ...dataProvider,
+  update: (resource: any, params: any) => {
+    if (resource !== "products" || !params.data.pictures) {
+      // fallback to the default implementation
+      return dataProvider.update(resource, params)
+    }
+    /**
+     * For products update only, convert uploaded image in base 64 and attach it to
+     * the `picture` sent property, with `src` and `title` attributes.
+     */
+
+    // Freshly dropped pictures are File objects and must be converted to base64 strings
+    const newPictures = params.data.pictures
+
+    return Promise.all(newPictures.map(convertFileToBase64))
+      .then((base64Pictures) =>
+        base64Pictures.map((picture64, i) => ({
+          src: picture64,
+          title: `${params.data.pictures[i].title}`,
+        })),
+      )
+      .then((transformedNewPictures) =>
+        dataProvider.update(resource, {
+          ...params,
+          data: {
+            ...params.data,
+            pictures: [...transformedNewPictures],
+          },
+        }),
+      )
+  },
+}
+
+export default customDataProvider

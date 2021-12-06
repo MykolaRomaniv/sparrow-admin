@@ -1,26 +1,16 @@
 {
-  "name": "sparrow-admin",
+  "name": "murloko-admin",
   "version": "0.1.0",
   "private": true,
-  "dependencies": {
-    "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^11.1.0",
-    "@testing-library/user-event": "^12.1.10",
-    "@types/jest": "^26.0.15",
-    "@types/node": "^12.0.0",
-    "@types/react": "^17.0.0",
-    "@types/react-dom": "^17.0.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-scripts": "4.0.3",
-    "typescript": "^4.1.2",
-    "web-vitals": "^1.0.1"
-  },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test",
+    "eject": "react-scripts eject",
+    "lint": "tsc --noEmit && eslint . --ext .js,.jsx,.ts,.tsx --fix",
+    "fix-styling": "stylelint --fix \"**/*.{css,scss}\"",
+    "fix-formatting": "prettier --write \"**/*.{js,json,css,scss,md}\"",
+    "husky:install": "husky install"
   },
   "eslintConfig": {
     "extends": [
@@ -39,5 +29,60 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "dependencies": {
+    "@craco/craco": "^6.4.2",
+    "@material-ui/core": "^4.12.3",
+    "@material-ui/icons": "^4.11.2",
+    "@testing-library/dom": "^8.11.1",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
+    "@types/jest": "^26.0.15",
+    "@types/node": "^12.0.0",
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
+    "axios": "^0.24.0",
+    "clsx": "^1.1.1",
+    "craco-alias": "^3.0.1",
+    "firebase": "^7.24.0",
+    "history": "^4.7.2",
+    "ra-data-firebase-client": "^3.0.0",
+    "ra-input-rich-text": "^3.19.2",
+    "react": "^17.0.2",
+    "react-admin": "^3.19.2",
+    "react-admin-firebase": "^3.2.24",
+    "react-dom": "^17.0.2",
+    "react-router-dom": "^5.x",
+    "react-scripts": "4.0.3",
+    "sass": "^1.43.5",
+    "sort-by": "^1.2.0",
+    "typescript": "^4.1.2",
+    "web-vitals": "^1.0.1"
+  },
+  "devDependencies": {
+    "@types/react-router-dom": "^5.3.2",
+    "@typescript-eslint/eslint-plugin": "^5.4.0",
+    "@typescript-eslint/parser": "^5.4.0",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb": "^19.0.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.27.1",
+    "eslint-plugin-react-hooks": "^4.3.0",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.1.2",
+    "postcss": "^8.4.1",
+    "postcss-scss": "^4.0.2",
+    "prettier": "^2.5.0",
+    "stylelint": "^14.1.0",
+    "stylelint-config-sass-guidelines": "^9.0.1"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": "eslint --cache --fix",
+    "*.{css,scss}": "stylelint --fix"
   }
 }

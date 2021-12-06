@@ -1,0 +1,11 @@
+**/*.json
+**/*.yaml
+**/*.ico
+**/*.gif
+**/*.png
+
+/node_modules
+/build
+/.idea
+/.vscode
+.DS_Store
