@@ -35,8 +35,33 @@ export enum OrdersFields {
   date = "date",
 }
 
+const ordersFilters = [
+  // TODO fulltext search https://marmelab.com/react-admin/List.html#full-text-search
+  // <SearchInput key="q" source="q" alwaysOn />,
+  <TextInput source={OrdersFields.id} key={OrdersFields.id} alwaysOn />,
+  <DateInput key="date" label="Date" source={OrdersFields.date} />,
+  <ReferenceInput
+    key="clients"
+    source={OrdersFields.clientsId}
+    reference="clients"
+  >
+    <SelectInput optionText={Clients.name} />
+  </ReferenceInput>,
+  <ReferenceInput
+    key="products"
+    source={OrdersFields.productId}
+    reference="products"
+  >
+    <SelectInput optionText={Products.name} />
+  </ReferenceInput>,
+  <RichTextInput source={OrdersFields.comment} key={OrdersFields.comment} />,
+  <NumberInput source={OrdersFields.price} min={0} key={OrdersFields.price} />,
+  <DateInput source={OrdersFields.date} key={OrdersFields.date} />,
+  <BooleanInput source={OrdersFields.realized} key={OrdersFields.realized} />,
+]
+
 export const OrdersList = (props: any): JSX.Element => (
-  <List {...props}>
+  <List {...props} filters={ordersFilters}>
     <Datagrid>
       <TextField source={OrdersFields.id} />
       <RichTextField source={OrdersFields.comment} />
@@ -56,7 +81,7 @@ export const OrdersList = (props: any): JSX.Element => (
         <TextField source={Products.name} />
       </ReferenceField>
       <DateField source={OrdersFields.date} />
-      <BooleanField source={OrdersFields.realized} label="Реалізовано" />
+      <BooleanField source={OrdersFields.realized} />
       <EditButton />
       <ShowButton />
     </Datagrid>
@@ -76,7 +101,7 @@ export const OrdersEdit = (props: any): JSX.Element => (
         <SelectInput optionText={Products.name} />
       </ReferenceInput>
       <DateInput source={OrdersFields.date} />
-      <BooleanInput source={OrdersFields.realized} label="Реалізовано" />
+      <BooleanInput source={OrdersFields.realized} />
     </SimpleForm>
   </Edit>
 )
@@ -93,7 +118,7 @@ export const OrdersCreate = (props: any): JSX.Element => (
         <SelectInput optionText={Products.name} />
       </ReferenceInput>
       <DateInput source={OrdersFields.date} />
-      <BooleanInput source={OrdersFields.realized} label="Реалізовано" />
+      <BooleanInput source={OrdersFields.realized} />
     </SimpleForm>
   </Create>
 )
@@ -111,7 +136,7 @@ export const OrdersShow = (props: any): JSX.Element => (
         <TextField source={Products.name} />
       </ReferenceField>
       <DateField source={OrdersFields.date} />
-      <BooleanField source={OrdersFields.realized} label="Реалізовано" />
+      <BooleanField source={OrdersFields.realized} />
     </SimpleShowLayout>
   </Show>
 )

@@ -21,8 +21,15 @@ export enum Clients {
   balance = "balance",
 }
 
+const clientsFilters = [
+  <TextInput key={Clients.name} source={Clients.name} alwaysOn />,
+  <TextInput key={Clients.email} source={Clients.email} />,
+  <TextInput key={Clients.phone} source={Clients.phone} />,
+  <NumberInput key={Clients.balance} source={Clients.balance} />,
+]
+
 export const ClientsList = (props: any): JSX.Element => (
-  <List {...props}>
+  <List {...props} filters={clientsFilters}>
     <Datagrid>
       <TextField source={Clients.name} />
       <TextField source={Clients.email} />

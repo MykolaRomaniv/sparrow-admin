@@ -1,3 +1,4 @@
+import { IMAGE_KEY } from "constants/index"
 import RichTextInput from "ra-input-rich-text"
 import {
   ArrayField,
@@ -20,18 +21,35 @@ import {
   TextInput,
 } from "react-admin"
 
-export enum Products {
-  id = "id",
-  name = "name",
-  desc = "desc",
-  price = "price",
-  weight = "weight",
+export const Products = {
+  id: "id",
+  name: "name",
+  desc: "desc",
+  price: "price",
+  weight: "weight",
   // TODO better schema for pictures
-  pictures = "pictures",
+  pictures: IMAGE_KEY,
 }
 
+export const productsFilters = [
+  <TextInput key={Products.id} source={Products.id} alwaysOn />,
+  <TextInput key={Products.name} source={Products.name} />,
+  <RichTextInput key={Products.desc} source={Products.desc} />,
+  <NumberInput key={Products.price} source={Products.price} min={0} />,
+  <NumberInput key={Products.weight} source={Products.weight} min={0} />,
+  <ImageInput
+    key={Products.pictures}
+    source={Products.pictures}
+    label="Related pictures"
+    accept="image/*"
+    multiple
+  >
+    <ImageField source="src" title="title" />
+  </ImageInput>,
+]
+
 export const ProductsList = (props: any): JSX.Element => (
-  <List {...props}>
+  <List {...props} filters={productsFilters}>
     <Datagrid>
       <TextField source={Products.id} />
       <TextField source={Products.name} />
