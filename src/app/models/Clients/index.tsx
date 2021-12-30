@@ -4,47 +4,42 @@ import {
   Edit,
   EditButton,
   List,
+  NumberInput,
   SimpleForm,
   TextField,
   TextInput,
 } from "react-admin"
 
-export const UsersList = (props: any): JSX.Element => (
+export const ClientsList = (props: any): JSX.Element => (
   <List {...props}>
     <Datagrid>
-      <TextField source="id" />
       <TextField source="name" />
       <TextField source="email" />
       <TextField source="phone" />
-      <TextField source="address" />
-      <TextField source="role" />
+      <TextField source="balance" />
       <EditButton />
     </Datagrid>
   </List>
 )
 
-export const UsersEdit = (props: any): JSX.Element => (
+export const ClientsEdit = (props: any): JSX.Element => (
   <Edit {...props}>
     <SimpleForm>
-      <TextInput disabled source="id" />
       <TextInput source="name" />
       <TextInput source="email" />
       <TextInput source="phone" />
-      <TextInput source="address" />
-      <TextInput source="role" />
+      <NumberInput source="balance" />
     </SimpleForm>
   </Edit>
 )
 
-export const UsersCreate = (props: any): JSX.Element => (
+export const ClientsCreate = (props: any): JSX.Element => (
   <Create {...props}>
     <SimpleForm>
-      <TextInput source="id" />
       <TextInput source="name" />
       <TextInput source="email" />
       <TextInput source="phone" />
-      <TextInput source="address" />
-      <TextInput source="role" />
+      <NumberInput source="balance" />
     </SimpleForm>
   </Create>
 )

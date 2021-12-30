@@ -4,8 +4,8 @@ import "firebase/database"
 
 import CustomLayout from "common/CustomLayout"
 import CustomRoutes from "components/CustomRoutes"
-import { ProductsCreate, ProductsEdit, ProductsList } from "components/Products"
-import { UsersCreate, UsersEdit, UsersList } from "components/Users"
+import { ClientsCreate, ClientsEdit, ClientsList } from "models/Clients"
+import { ProductsCreate, ProductsEdit, ProductsList } from "models/Products"
 import { Admin, Resource } from "react-admin"
 import authProvider from "services/authProvider"
 import customDataProvider from "services/dataProvider"
@@ -18,15 +18,22 @@ const App = (): JSX.Element => (
     customRoutes={CustomRoutes}
   >
     <Resource
-      name="users"
-      options={{ label: "Користувачі" }}
-      list={UsersList}
-      edit={UsersEdit}
-      create={UsersCreate}
+      name="clients"
+      options={{ label: "Клієнти" }}
+      list={ClientsList}
+      edit={ClientsEdit}
+      create={ClientsCreate}
     />
     <Resource
       name="products"
-      options={{ label: "Продукти" }}
+      options={{ label: "Товари" }}
+      list={ProductsList}
+      edit={ProductsEdit}
+      create={ProductsCreate}
+    />
+    <Resource
+      name="orders"
+      options={{ label: "Замовлення" }}
       list={ProductsList}
       edit={ProductsEdit}
       create={ProductsCreate}

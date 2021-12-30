@@ -1,5 +1,7 @@
 import RichTextInput from "ra-input-rich-text"
 import {
+  BooleanField,
+  BooleanInput,
   Create,
   Datagrid,
   Edit,
@@ -23,6 +25,7 @@ export const ProductsList = (props: any): JSX.Element => (
       <RichTextField source="desc" />
       <NumberField source="price" />
       <NumberField source="weight" />
+      <BooleanField label="Реалізовано" source="realized" />
       <ImageField source="pictures.0.src" title="title" label="Pictures" />
       <EditButton />
     </Datagrid>
@@ -37,6 +40,7 @@ export const ProductsEdit = (props: any): JSX.Element => (
       <RichTextInput source="desc" />
       <NumberInput source="price" min={0} />
       <NumberInput source="weight" min={0} />
+      <BooleanInput label="Реалізовано" source="realized" />
       <ImageInput
         source="pictures"
         label="Related pictures"
@@ -57,6 +61,7 @@ export const ProductsCreate = (props: any): JSX.Element => (
       <RichTextField source="desc" />
       <NumberInput source="price" min={0} />
       <NumberInput source="weight" min={0} />
+      <BooleanInput label="Реалізовано" source="realized" />
       <ImageInput
         source="pictures"
         label="Related pictures"
