@@ -6,6 +6,7 @@ import {
   BooleanInput,
   Create,
   Datagrid,
+  DateField,
   DateInput,
   Edit,
   EditButton,
@@ -43,6 +44,7 @@ export const OrdersList = (props: any): JSX.Element => (
       <ReferenceField source={OrdersFields.productId} reference="products">
         <TextField source={Products.name} />
       </ReferenceField>
+      <DateField source={OrdersFields.date} />
       <BooleanField source={OrdersFields.realized} label="Реалізовано" />
       <EditButton />
     </Datagrid>
