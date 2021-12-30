@@ -1,9 +1,12 @@
+import { Clients } from "models/Clients"
+import { Products } from "models/Products"
 import RichTextInput from "ra-input-rich-text"
 import {
   BooleanField,
   BooleanInput,
   Create,
   Datagrid,
+  DateInput,
   Edit,
   EditButton,
   List,
@@ -19,22 +22,26 @@ import {
 } from "react-admin"
 
 export enum OrdersFields {
+  id = "id",
   comment = "comment",
   price = "price",
   realized = "realized",
+  clientsId = "clientsId",
+  productId = "productId",
+  date = "date",
 }
 
 export const OrdersList = (props: any): JSX.Element => (
   <List {...props}>
     <Datagrid>
-      <TextField source="id" />
+      <TextField source={OrdersFields.id} />
       <RichTextField source={OrdersFields.comment} />
       <NumberField source={OrdersFields.price} />
-      <ReferenceField source="clients_id" reference="clients">
-        <TextField source="name" />
+      <ReferenceField source={OrdersFields.clientsId} reference="clients">
+        <TextField source={Clients.name} />
       </ReferenceField>
-      <ReferenceField source="product_id" reference="products">
-        <TextField source="name" />
+      <ReferenceField source={OrdersFields.productId} reference="products">
+        <TextField source={Products.name} />
       </ReferenceField>
       <BooleanField source={OrdersFields.realized} label="Реалізовано" />
       <EditButton />
@@ -45,15 +52,16 @@ export const OrdersList = (props: any): JSX.Element => (
 export const OrdersEdit = (props: any): JSX.Element => (
   <Edit {...props}>
     <SimpleForm>
-      <TextInput disabled source="id" />
+      <TextInput disabled source={OrdersFields.id} />
       <RichTextInput source={OrdersFields.comment} />
       <NumberInput source={OrdersFields.price} min={0} />
-      <ReferenceInput source="clients_id" reference="clients">
-        <SelectInput optionText="name" />
+      <ReferenceInput source={OrdersFields.clientsId} reference="clients">
+        <SelectInput optionText={Clients.name} />
       </ReferenceInput>
-      <ReferenceInput source="product_id" reference="products">
-        <SelectInput optionText="name" />
+      <ReferenceInput source={OrdersFields.productId} reference="products">
+        <SelectInput optionText={Products.name} />
       </ReferenceInput>
+      <DateInput source={OrdersFields.date} />
       <BooleanInput source={OrdersFields.realized} label="Реалізовано" />
     </SimpleForm>
   </Edit>
@@ -64,12 +72,13 @@ export const OrdersCreate = (props: any): JSX.Element => (
     <SimpleForm>
       <RichTextField source={OrdersFields.comment} />
       <NumberInput source={OrdersFields.price} min={0} />
-      <ReferenceInput source="clients_id" reference="clients">
-        <SelectInput optionText="name" />
+      <ReferenceInput source={OrdersFields.clientsId} reference="clients">
+        <SelectInput optionText={Clients.name} />
       </ReferenceInput>
-      <ReferenceInput source="product_id" reference="products">
-        <SelectInput optionText="name" />
+      <ReferenceInput source={OrdersFields.productId} reference="products">
+        <SelectInput optionText={Products.name} />
       </ReferenceInput>
+      <DateInput source={OrdersFields.date} />
       <BooleanInput source={OrdersFields.realized} label="Реалізовано" />
     </SimpleForm>
   </Create>

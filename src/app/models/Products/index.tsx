@@ -15,15 +15,28 @@ import {
   TextInput,
 } from "react-admin"
 
+export enum Products {
+  id = "id",
+  name = "name",
+  desc = "desc",
+  price = "price",
+  weight = "weight",
+  pictures = "pictures",
+}
+
 export const ProductsList = (props: any): JSX.Element => (
   <List {...props}>
     <Datagrid>
-      <TextField source="id" />
-      <TextField source="name" />
-      <RichTextField source="desc" />
-      <NumberField source="price" />
-      <NumberField source="weight" />
-      <ImageField source="pictures.0.src" title="title" label="Pictures" />
+      <TextField source={Products.id} />
+      <TextField source={Products.name} />
+      <RichTextField source={Products.desc} />
+      <NumberField source={Products.price} />
+      <NumberField source={Products.weight} />
+      <ImageField
+        source={`${Products.pictures}.0.src`}
+        title="title"
+        label="Pictures"
+      />
       <EditButton />
     </Datagrid>
   </List>
@@ -32,13 +45,13 @@ export const ProductsList = (props: any): JSX.Element => (
 export const ProductsEdit = (props: any): JSX.Element => (
   <Edit {...props}>
     <SimpleForm>
-      <TextInput disabled source="id" />
-      <TextInput source="name" />
-      <RichTextInput source="desc" />
-      <NumberInput source="price" min={0} />
-      <NumberInput source="weight" min={0} />
+      <TextInput disabled source={Products.id} />
+      <TextInput source={Products.name} />
+      <RichTextInput source={Products.desc} />
+      <NumberInput source={Products.price} min={0} />
+      <NumberInput source={Products.weight} min={0} />
       <ImageInput
-        source="pictures"
+        source={Products.pictures}
         label="Related pictures"
         accept="image/*"
         multiple
@@ -52,13 +65,13 @@ export const ProductsEdit = (props: any): JSX.Element => (
 export const ProductsCreate = (props: any): JSX.Element => (
   <Create {...props}>
     <SimpleForm>
-      <TextInput source="id" />
-      <TextInput source="name" />
-      <RichTextField source="desc" />
-      <NumberInput source="price" min={0} />
-      <NumberInput source="weight" min={0} />
+      <TextInput source={Products.id} />
+      <TextInput source={Products.name} />
+      <RichTextField source={Products.desc} />
+      <NumberInput source={Products.price} min={0} />
+      <NumberInput source={Products.weight} min={0} />
       <ImageInput
-        source="pictures"
+        source={Products.pictures}
         label="Related pictures"
         accept="image/*"
         multiple
