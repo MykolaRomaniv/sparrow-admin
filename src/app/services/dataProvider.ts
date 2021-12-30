@@ -13,6 +13,8 @@ const settings = { context: "", imagekey: "images", filekey: "files" }
 
 const dataProvider = firebaseDataProvider(firebase, settings)
 
+const database = defaultFirebase.database()
+
 const customDataProvider = {
   ...dataProvider,
   update: (resource: any, params: any) => {
@@ -44,6 +46,21 @@ const customDataProvider = {
           },
         }),
       )
+  },
+  getMany: (source: any, params: { ids: any[] }) => {
+    const resource = [settings.context, source].join("/")
+    const getMany = new Promise((resolve) => {
+      const data = params.ids.map((id: any) =>
+        database
+          .ref([resource, id].join("/"))
+          .once("value")
+          .then((snapshot) => snapshot.val()),
+      )
+      Promise.all([...data]).then((values) => {
+        resolve(values)
+      })
+    })
+    return getMany.then((data) => ({ data }))
   },
 }
 
