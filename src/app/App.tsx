@@ -5,6 +5,7 @@ import "firebase/database"
 import CustomLayout from "common/CustomLayout"
 import CustomRoutes from "components/CustomRoutes"
 import { ClientsCreate, ClientsEdit, ClientsList } from "models/Clients"
+import { OrdersCreate, OrdersEdit, OrdersList } from "models/Orders"
 import { ProductsCreate, ProductsEdit, ProductsList } from "models/Products"
 import { Admin, Resource } from "react-admin"
 import authProvider from "services/authProvider"
@@ -34,9 +35,9 @@ const App = (): JSX.Element => (
     <Resource
       name="orders"
       options={{ label: "Замовлення" }}
-      list={ProductsList}
-      edit={ProductsEdit}
-      create={ProductsCreate}
+      list={OrdersList}
+      edit={OrdersEdit}
+      create={OrdersCreate}
     />
   </Admin>
 )
