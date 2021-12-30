@@ -2,6 +2,7 @@
   "compilerOptions": {
     "baseUrl": "./src",
     "paths": {
+      "models": ["app/models"],
       "components": ["app/components"],
       "containers": ["app/containers"],
       "services": ["app/services"],
@@ -11,6 +12,7 @@
       "utils": ["app/utils"],
       "types": ["app/types"],
 
+      "models/*": ["app/models/*"],
       "components/*": ["app/components/*"],
       "containers/*": ["app/containers/*"],
       "services/*": ["app/services/*"],
