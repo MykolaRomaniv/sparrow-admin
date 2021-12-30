@@ -4,9 +4,19 @@ import "firebase/database"
 
 import CustomLayout from "common/CustomLayout"
 import CustomRoutes from "components/CustomRoutes"
-import { ClientsCreate, ClientsEdit, ClientsList } from "models/Clients"
-import { OrdersCreate, OrdersEdit, OrdersList } from "models/Orders"
-import { ProductsCreate, ProductsEdit, ProductsList } from "models/Products"
+import {
+  ClientsCreate,
+  ClientsEdit,
+  ClientsList,
+  ClientsShow,
+} from "models/Clients"
+import { OrdersCreate, OrdersEdit, OrdersList, OrdersShow } from "models/Orders"
+import {
+  ProductsCreate,
+  ProductsEdit,
+  ProductsList,
+  ProductsShow,
+} from "models/Products"
 import { Admin, Resource } from "react-admin"
 import authProvider from "services/authProvider"
 import customDataProvider from "services/dataProvider"
@@ -24,6 +34,7 @@ const App = (): JSX.Element => (
       list={ClientsList}
       edit={ClientsEdit}
       create={ClientsCreate}
+      show={ClientsShow}
     />
     <Resource
       name="products"
@@ -31,6 +42,7 @@ const App = (): JSX.Element => (
       list={ProductsList}
       edit={ProductsEdit}
       create={ProductsCreate}
+      show={ProductsShow}
     />
     <Resource
       name="orders"
@@ -38,6 +50,7 @@ const App = (): JSX.Element => (
       list={OrdersList}
       edit={OrdersEdit}
       create={OrdersCreate}
+      show={OrdersShow}
     />
   </Admin>
 )

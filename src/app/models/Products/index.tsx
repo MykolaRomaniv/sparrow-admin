@@ -1,5 +1,6 @@
 import RichTextInput from "ra-input-rich-text"
 import {
+  ArrayField,
   Create,
   Datagrid,
   Edit,
@@ -10,7 +11,11 @@ import {
   NumberField,
   NumberInput,
   RichTextField,
+  Show,
+  ShowButton,
   SimpleForm,
+  SimpleShowLayout,
+  SingleFieldList,
   TextField,
   TextInput,
 } from "react-admin"
@@ -21,6 +26,7 @@ export enum Products {
   desc = "desc",
   price = "price",
   weight = "weight",
+  // TODO better schema for pictures
   pictures = "pictures",
 }
 
@@ -38,6 +44,7 @@ export const ProductsList = (props: any): JSX.Element => (
         label="Pictures"
       />
       <EditButton />
+      <ShowButton />
     </Datagrid>
   </List>
 )
@@ -80,4 +87,21 @@ export const ProductsCreate = (props: any): JSX.Element => (
       </ImageInput>
     </SimpleForm>
   </Create>
+)
+
+export const ProductsShow = (props: any): JSX.Element => (
+  <Show {...props}>
+    <SimpleShowLayout>
+      <TextField source={Products.id} />
+      <TextField source={Products.name} />
+      <RichTextField source={Products.desc} />
+      <NumberField source={Products.price} />
+      <NumberField source={Products.weight} />
+      <ArrayField source={Products.pictures} fieldKey="id">
+        <SingleFieldList>
+          <ImageField source="src" title="title" label="Pictures" />
+        </SingleFieldList>
+      </ArrayField>
+    </SimpleShowLayout>
+  </Show>
 )

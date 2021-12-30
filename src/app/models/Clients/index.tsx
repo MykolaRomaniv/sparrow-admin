@@ -5,7 +5,10 @@ import {
   EditButton,
   List,
   NumberInput,
+  Show,
+  ShowButton,
   SimpleForm,
+  SimpleShowLayout,
   TextField,
   TextInput,
 } from "react-admin"
@@ -26,6 +29,7 @@ export const ClientsList = (props: any): JSX.Element => (
       <TextField source={Clients.phone} />
       <TextField source={Clients.balance} />
       <EditButton />
+      <ShowButton />
     </Datagrid>
   </List>
 )
@@ -50,4 +54,15 @@ export const ClientsCreate = (props: any): JSX.Element => (
       <NumberInput source={Clients.balance} />
     </SimpleForm>
   </Create>
+)
+
+export const ClientsShow = (props: any): JSX.Element => (
+  <Show {...props}>
+    <SimpleShowLayout>
+      <TextField source={Clients.name} />
+      <TextField source={Clients.email} />
+      <TextField source={Clients.phone} />
+      <TextField source={Clients.balance} />
+    </SimpleShowLayout>
+  </Show>
 )

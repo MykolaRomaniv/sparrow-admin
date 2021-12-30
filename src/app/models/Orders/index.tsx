@@ -17,7 +17,10 @@ import {
   ReferenceInput,
   RichTextField,
   SelectInput,
+  Show,
+  ShowButton,
   SimpleForm,
+  SimpleShowLayout,
   TextField,
   TextInput,
 } from "react-admin"
@@ -38,15 +41,24 @@ export const OrdersList = (props: any): JSX.Element => (
       <TextField source={OrdersFields.id} />
       <RichTextField source={OrdersFields.comment} />
       <NumberField source={OrdersFields.price} />
-      <ReferenceField source={OrdersFields.clientsId} reference="clients">
+      <ReferenceField
+        source={OrdersFields.clientsId}
+        reference="clients"
+        link="show"
+      >
         <TextField source={Clients.name} />
       </ReferenceField>
-      <ReferenceField source={OrdersFields.productId} reference="products">
+      <ReferenceField
+        source={OrdersFields.productId}
+        reference="products"
+        link="show"
+      >
         <TextField source={Products.name} />
       </ReferenceField>
       <DateField source={OrdersFields.date} />
       <BooleanField source={OrdersFields.realized} label="Реалізовано" />
       <EditButton />
+      <ShowButton />
     </Datagrid>
   </List>
 )
@@ -84,4 +96,22 @@ export const OrdersCreate = (props: any): JSX.Element => (
       <BooleanInput source={OrdersFields.realized} label="Реалізовано" />
     </SimpleForm>
   </Create>
+)
+
+export const OrdersShow = (props: any): JSX.Element => (
+  <Show {...props}>
+    <SimpleShowLayout>
+      <TextField source={OrdersFields.id} />
+      <RichTextField source={OrdersFields.comment} />
+      <NumberField source={OrdersFields.price} />
+      <ReferenceField source={OrdersFields.clientsId} reference="clients">
+        <TextField source={Clients.name} />
+      </ReferenceField>
+      <ReferenceField source={OrdersFields.productId} reference="products">
+        <TextField source={Products.name} />
+      </ReferenceField>
+      <DateField source={OrdersFields.date} />
+      <BooleanField source={OrdersFields.realized} label="Реалізовано" />
+    </SimpleShowLayout>
+  </Show>
 )
