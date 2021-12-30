@@ -36,6 +36,7 @@ const customDataProvider = {
     return Promise.all(newPictures.map(convertFileToBase64))
       .then((base64Pictures) =>
         base64Pictures.map((picture64, i) => ({
+          id: i,
           src: picture64,
           title: `${params.data.pictures[i].title}`,
         })),
