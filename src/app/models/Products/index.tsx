@@ -1,4 +1,5 @@
 import { IMAGE_KEY } from "constants/index"
+import ListActions from "models/Products/ListActions"
 import RichTextInput from "ra-input-rich-text"
 import {
   ArrayField,
@@ -49,7 +50,7 @@ export const productsFilters = [
 ]
 
 export const ProductsList = (props: any): JSX.Element => (
-  <List {...props} filters={productsFilters}>
+  <List {...props} filters={productsFilters} actions={<ListActions />}>
     <Datagrid>
       <TextField source={Products.id} />
       <TextField source={Products.name} />
